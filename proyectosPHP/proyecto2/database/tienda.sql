@@ -8,7 +8,7 @@ CREATE TABLE usuarios(
     email VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     rol ENUM('admin','user'),
-    imagen BLOB,
+    imagen CHAR(255),
     CONSTRAINT PK_usuarios PRIMARY KEY(id),
     CONSTRAINT UQ_usuarios UNIQUE(email)
 )ENGINE=InnoDB;
@@ -24,7 +24,7 @@ CREATE TABLE pedidos(
     fecha DATE,
     hora TIME,
     CONSTRAINT PK_pedidos PRIMARY KEY(id),
-    CONSTRAINT FK_pedidos_usuarios FOREIGN KEY(usuario_id) REFERENCES usuario(id)
+    CONSTRAINT FK_pedidos_usuarios FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
 )ENGINE=InnoDB;
 
 CREATE TABLE categorias(
@@ -39,8 +39,10 @@ CREATE TABLE productos(
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT,
     precio FLOAT(100,2) NOT NULL,
+    stock INT(255),
+    oferta TINYINT(),
     fecha DATE,
-    imagen BLOB,
+    imagen CHAR(255),
     CONSTRAINT PK_productos PRIMARY KEY(id),
     CONSTRAINT FK_productos_categorias FOREIGN KEY(categoria_id) REFERENCES categorias(id)
 )ENGINE=InnoDB;

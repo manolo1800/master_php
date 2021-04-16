@@ -1,20 +1,35 @@
 
 <?php
-
+    session_start();
     require_once 'autoload.php';
+    require_once 'configs/db.php';
+    require_once 'configs/parametros.php';
+    require_once 'helpers/Utils.php';
     require_once 'views/layout/header.php';
     require_once 'views/layout/sidebar.php';
     
+    function show_Error(){
+        $error= new ErrorController();
+        $error->index();
+    }
     
+    //controlador
     if(isset($_GET['controller']))
     {
         $nombre_controlador= $_GET['controller'].'Controller';
-        
-    }else{
-        echo "la accion no existe";
-        exit();
+
+    }
+    elseif(!isset($_GET['controller']) && !isset($_GET['action']))
+    {
+        $nombre_controlador= controller_default;
+    }
+    else
+    {
+        show_Error();
+       
     }
     
+    //accion del controlador
     if(class_exists($nombre_controlador))
     {
         
@@ -22,15 +37,26 @@
         if(isset($_GET['action']) && method_exists($controlador, $_GET['action'] ))
         {
             $action=$_GET['action'];
-            
             $controlador->$action();
-            
-        }else{
-            echo "la accion no existe1";
         }
-    }else{
-        echo "la accion no existe2";
+        elseif(!isset($_GET['controller']) && !isset($_GET['action']))
+        {
+            $action_default= action_default;
+            
+            $controlador->$action_default();
+        }
+        else
+        {
+            show_Error();
+            
+        }
+
+    }
+    else
+    {
+        show_Error();
     }   
+    
     require_once 'views/layout/footer.php';
     
 ?>

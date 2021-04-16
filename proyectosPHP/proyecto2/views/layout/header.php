@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <title>tienda camiseta</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="<?=base_url?>assets/css/styles.css">
 </head>
 <body>
     <div id="container">
@@ -15,8 +15,8 @@
             
             <header id="header">
                 <div id="logo">
-                    <img src="assets/img/camiseta.png" alt="camiseta logo">
-                    <a href="index.php">Tienda de camisetas</a>
+                    <img src="<?=base_url?>assets/img/camiseta.png" alt="camiseta logo">
+                    <a href="<?=base_url?>Producto/destacados">Tienda de camisetas</a>
                 </div>
             </header>    
         
@@ -24,28 +24,16 @@
             <nav id="menu">
                 <ul>
                     <li>
-                        <a href="index.php">inicio</a>
+                        <a href="<?=base_url?>">inicio</a>
                     </li>
-
-                    <li>
-                        <a href="index.php">categoria 1</a>
-                    </li>
-
-                    <li>
-                        <a href="index.php">categoria 2</a>
-                    </li>
-
-                    <li>
-                        <a href="index.php">categoria 3</a>
-                    </li>
-
-                    <li>
-                        <a href="index.php">categoria 4</a>
-                    </li>
-
-                    <li>
-                        <a href="index.php">categoria 5</a>
-                    </li>
+                    <?php
+                        $categorias=Utils::showCategorias();
+                         while($cat=$categorias->fetch_object()): ?>
+        
+                        <li><a href="<?=base_url?>Categoria/ver&id=<?=$cat->id;?>"><?=$cat->nombre;?></a></li>
+       
+                    <?php endwhile; ?>
+                    
                 </ul>
             </nav>
         

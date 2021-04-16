@@ -25,9 +25,10 @@ label,
 input[type="text"],
 input[type="email"],
 input[type="password"],
-select{
+input[type="number"],
+select,textarea{
     display: block;
-    width: 95%;
+    width: 100%;
     margin-top: 2px;
     margin-bottom: 2px;
 }
@@ -53,7 +54,7 @@ input[type="password"]:focus{
 
 input[type="button"],
 input[type="submit"],
-button{
+button, .button{
     display: block;
     border-radius: 2px;
     width: auto;
@@ -61,14 +62,39 @@ button{
     padding-left: 10px;
     padding-right: 10px;
     color: white;
-    background:#2979CD;
-    border: 1px solid  #01B1EA;
+    background: #2979CD;
+    border: 1px solid #11608E;
+    cursor:pointer;
 }
 
+.button-small{
+    width: 120px;
+    text-align: center;
+    margin-bottom: 10px;
+}
 
+.button-delete
+{
+    color: red;
+    background-color: red;
+    border: 1px solid rgb(209, 6, 6);
+}
 label,input[type="button"],
 input[type="submit"],
 button{
     display: block;
     margin-top: 10px;
 }
+
+form
+{
+    width: 50%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+textarea
+{
+    resize: none;
+}
+

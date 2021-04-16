@@ -3,10 +3,11 @@
     RewriteEngine on
     ErrorDocument 404 http://localhost/master_php/proyectosPHP/proyecto2/error/index
 
-    RewriCond %{SCRIPT_FILENAME} !-d
-    RewriCond %{SCRIPT_FILENAME} !-f
+    RewriteCond %{SCRIPT_FILENAME} !-d
+    RewriteCond %{SCRIPT_FILENAME} !-f
     
-    RewriteRule ^(.*)/(.*) in index.php?controller=$1&action=$2
+    RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
 
+  
  
 </IfModule>

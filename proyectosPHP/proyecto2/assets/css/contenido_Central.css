@@ -1,11 +1,12 @@
 /*CENTRAL*/
 #central{
-    width: 72%;
-    min-height: 500px;
+    width: 70%;
+    height: 100%;
+    min-height: 600px;
     float:right;
     border-left: 1px solid #ccc;
     box-shadow: -5px -1px  5px #ddd;
-    padding: 25px;
+    padding: 2.5%;
 }
 #central h1{
     font-size: 25px;
@@ -27,9 +28,17 @@
     text-align: center;
     
 }
-#product img{
-    width: 35%;
+#product img
+{
+    height: 160px;
+    width: 160px;
+    margin-bottom: 2%;
     
+}
+
+#product a
+{
+    text-decoration: none;
 }
 
 #product h2{
@@ -41,14 +50,85 @@
     margin-bottom: 2%;
 }
 .button{
+    background:  #01B1EA;
+    color: white !important;
     text-decoration: none;
-    border-radius: 2px;
+    margin-bottom: 1%;
+}
+.button-delete
+{
+    color: red;
+    background-color: red;
+    border: 1px solid rgb(209, 6, 6);
+}
+
+
+.alert_green{
+    color: green;
+}
+
+.alert_red{
+    color: red;
+}
+
+table{
+    border: 1px solid #555;
+    width: 100%;
+    text-align: center;
+
+}
+
+td
+{
+    border-top: 1px solid #555 ;
+    padding: 2px;
+
+}
+
+.thumb
+{
     width: 35%;
-    padding: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-top: 1px;
-    color: white;
-    background:#2979CD;
-    border: 1px solid  #01B1EA;
+}
+
+/*MOSTRAR*/
+
+.mostrar
+{
+    width: 100%;
+    height: 100%;
+    font-size: 200%;
+}
+
+
+.descripcion
+{
+    margin-bottom: 5%;
+}
+
+.price
+{
+    margin-top: 5%;
+    display: block;
+    margin-left: 59%;
+}
+
+
+
+.button-ms
+{
+    display: block;
+    width: 120px;
+    float: right;
+    margin-right: 25%;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 5%;
+    font-size: 50%;
+}
+
+.mostrar img
+{
+    display: block;
+    width: 40%;
+    float: left;
 }

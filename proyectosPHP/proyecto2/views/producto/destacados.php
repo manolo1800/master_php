@@ -1,42 +1,24 @@
-<h1>Productos destacasdos</h1>
-                    <div id="product">
-                        <img src="assets/img/camiseta.png">
-                        <h2>camiseta azul olgada</h2>
-                        <p>30 euros</p>
-                        <a href="#" class="button">comprar</a>
-                    </div>
+<h1>Algunos de nuestros productos</h1>
 
-                    <div id="product">
-                        <img src="assets/img/camiseta.png">
-                        <h2>camiseta azul apretada</h2>
-                        <p>30 euros</p>
-                        <a href="#" class="button">comprar</a>
-                    </div>
+<?php if(isset($_SESSION['register']) && $_SESSION['register']=="complete" ): ?>
+    <script>window.alert('registro exitoso')</script> 
+
+<?php elseif(isset($_SESSION['register']) && $_SESSION['register']=="failed"):?>
+    <script>window.alert('registro fallido')</script> 
+   
+<?php endif; ?>
+
+<?php  Utils::deleteSession('register');  ?> 
                     
+                <?php while($prod=$productos->fetch_object()): ?>    
                     <div id="product">
-                        <img src="assets/img/camiseta.png">
-                        <h2>camiseta azul de tela</h2>
-                        <p>30 euros</p>
-                        <a href="#" class="button">comprar</a>
+                        <?php if(isset($prod) && is_object($prod) && !empty($prod->imagen)): ?>
+                            <a href="<?=base_url?>Producto/mostrar&id=<?=$prod->id?>"><img src="<?=base_url?>uploads/images/producto/<?=$prod->imagen?>"/></a>
+                        <?php endif; ?>
+                        <a href="<?=base_url?>Producto/mostrar&id=<?=$prod->id?>"><h2><?=$prod->nombre?></h2></a>
+                        <p>$<?=$prod->precio?></p>
+                        <a href="<?=base_url?>Pedidos/comprar" class="button">comprar</a>
+                        <a href="<?=base_url?>Pedidos/agregar al carrito" class="button">agregar al carrito</a>
                     </div>
-
-                    <div id="product">
-                        <img src="assets/img/camiseta.png">
-                        <h2>camiseta azul de tela</h2>
-                        <p>30 euros</p>
-                        <a href="#" class="button">comprar</a>
-                    </div>
-
-                    <div id="product">
-                        <img src="assets/img/camiseta.png">
-                        <h2>camiseta azul de tela</h2>
-                        <p>30 euros</p>
-                        <a href="#" class="button">comprar</a>
-                    </div>
-                    <div id="product">
-                        <img src="assets/img/camiseta.png">
-                        <h2>camiseta azul de tela</h2>
-                        <p>30 euros</p>
-                        <a href="#" class="button">comprar</a>
-                    </div>
-                </div>
+                <?php endwhile; ?>
+                    
