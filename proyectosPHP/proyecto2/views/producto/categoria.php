@@ -9,6 +9,6 @@
     <?php endif; ?>
     <a href="<?=base_url?>Producto/mostrar&id=<?=$prod->id?>"><h2><?=$prod->nombre?></h2></a>
     <p>$<?=$prod->precio?></p>
-    <a href="#" class="button">comprar</a>
+    <a href="<?=base_url?>Carrito/add&id=<?=$prod->id?>" class="button">agregar al carrito</a>
     </div>
 <?php endwhile; ?>

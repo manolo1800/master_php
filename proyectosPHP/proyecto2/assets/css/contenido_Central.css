@@ -57,7 +57,7 @@
 }
 .button-delete
 {
-    color: red;
+    width: 120px;
     background-color: red;
     border: 1px solid rgb(209, 6, 6);
 }
@@ -72,7 +72,7 @@
 }
 
 table{
-    border: 1px solid #555;
+    border-bottom: 1px solid  #ccc;
     width: 100%;
     text-align: center;
 
@@ -80,7 +80,7 @@ table{
 
 td
 {
-    border-top: 1px solid #555 ;
+    border-top: 1px solid #ccc ;
     padding: 2px;
 
 }
@@ -131,4 +131,77 @@ td
     display: block;
     width: 40%;
     float: left;
+}
+
+.img-carrito
+{
+    height: 40%;
+    
+}
+
+/*CARRITO*/
+
+.total_carrito
+{
+    
+    float:right;
+    margin-right: 10%;
+}
+
+.text-carrito
+{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.button-carrito
+{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.button--carrito-delete{
+    background-color: red;
+    color:white;
+    border: red;
+    border-radius: 5px;
+}
+.contador
+{
+    background: turquoise;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.3em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.3em; 
+
+}
+
+.button-delete-prod
+{
+    width: 46%;
+    display: block;
+    margin-left: 20%;
+    background-color: red;
+    color:white;
+    border: red;
+    border-radius: 5px;
+}
+
+.button-count
+{
+    width: 5%;
+    display: block;
+    align-items: center;
+    margin-left: 40%;
+    margin-bottom: 3%;
+    margin-top: 3%;
 }

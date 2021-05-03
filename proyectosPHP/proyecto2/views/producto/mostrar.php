@@ -16,6 +16,6 @@
             <p><?=$prod->oferta?>%</p>
         <?php endif; ?>    
     </div>        
-        <a href="#" class="button button-ms">comprar</a>
+    <a href="<?=base_url?>Carrito/add&id=<?=$prod->id?>" class="button button-ms">agregar al carrito</a>
     
 </div>    

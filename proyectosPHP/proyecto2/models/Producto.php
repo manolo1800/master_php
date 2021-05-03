@@ -178,15 +178,17 @@
 
         public function getAll()
         {
-            $query="SELECT * FROM productos";
+                $query="SELECT * FROM productos
+                        WHERE (stock <> 0) "
+                ;
             $productos=$this->db->query($query);
 
             return $productos;
         }
         
-        public function getProduct($id)
+        public function getProduct()
         {
-                $query="SELECT * FROM productos where id=$id";
+                $query="SELECT * FROM productos where id={$this->getId()}";
                 $productos=$this->db->query($query);
                 return $productos->fetch_object();
         }
@@ -198,8 +200,6 @@
                     {$this->getPrecio()}, {$this->getStock()}, {$this->getOferta()}, CURDATE(), '{$this->getImagen()}')
                 ;";
              
-            
-
             $save=$this->db->query($query);
             
             $result=false;
@@ -252,7 +252,7 @@
         
         public function getRandom($limit)
         {
-                $query="SELECT * FROM productos ORDER BY RAND() LIMIT $limit";
+                $query="SELECT * FROM productos WHERE (stock <> 0) ORDER BY RAND() LIMIT $limit";
                 $producto=$this->db->query($query);
                                 
                 return $producto;
@@ -262,7 +262,7 @@
         {
                 $query="SELECT * FROM productos 
                         
-                        WHERE categoria_id=$catId
+                        WHERE categoria_id=$catId && (stock <> 0)
                         
                         ORDER BY id ASC; "
                 ;
@@ -271,6 +271,8 @@
 
                 return $showcat;
         }
+
+       
        
     }
 

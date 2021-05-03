@@ -1,6 +1,6 @@
 <?php
 
-    class Pedidio
+    class Pedido
     {
         public $id,$usuario_id,$provincia,$localidad,$direccion,$coste,$estado,$fecha,$hora;
 
@@ -28,6 +28,13 @@
         }
 
         
+        /**
+         * Get the value of usuario_id
+         */ 
+        public function getUsuario_id()
+        {
+                return $this->usuario_id;
+        }
 
         /**
          * Set the value of usuario_id
@@ -167,18 +174,112 @@
 
         public function mostrar()
         {
-            $query="SELECT * FROM pedidos ORDER BY id DESC;";
-            $pedidos=$this->db->query($query);
-            
-            if($pedidos)
-            {
-                return $pedidos;
-            }
+                $query="SELECT * FROM pedidos ORDER BY id DESC;";
+                $pedidos=$this->db->query($query);
+                
+                if($pedidos)
+                {
+                        return $pedidos;
+                }
         }
 
-        public function hacerPedido()
+        public function getOne()
         {
+                $query="SELECT p.*,u.id as 'usuario',u.nombre as 'nombre' ,u.apellidos as 'apellido' ,u.email as 'email' FROM pedidos p
+                        JOIN usuarios u ON p.usuario_id=u.id
+                        WHERE p.id={$this->getId()} ;"
+                ;
+                $pedidos=$this->db->query($query);
+                
+                if($pedidos)
+                {
+                        return $pedidos->fetch_object();
+                }
+        }
 
+        public function getByUser()
+        {
+                $query="SELECT * FROM pedidos 
+                        WHERE usuario_id={$this->getUsuario_id()}
+                        ORDER BY id DESC;";
+                $pedidos=$this->db->query($query);
+                return $pedidos;
+        }
+
+        public function getOne_usuario_id()
+        {
+                $query="SELECT p.id,p.coste FROM pedidos p
+                        WHERE p.usuario_id='{$this->getUsuario_id()}'
+                        ORDER BY p.id DESC LIMIT 1;    ";
+                $pedidos=$this->db->query($query);
+                return $pedidos->fetch_object();
+        
+        }
+
+        public function getProductosByPedidos($id)
+        {
+                $query= "SELECT p.* FROM productos p
+                        WHERE p.id IN (SELECT producto_id FROM lineas_pedidos WHERE pedido_id={$id} ) "; 
+
+                $query= "SELECT pr.*, lp.unidades FROM productos pr
+                        INNER JOIN lineas_pedidos lp ON pr.id = lp.producto_id 
+                        WHERE lp.pedido_id={$id};";                        
+                $producto=$this->db->query($query);
+                return $producto;   
+                                                         
+        }
+
+        public function guardarPedido()
+        {
+                $query="INSERT INTO pedidos VALUES(NULL,{$this->getUsuario_id()},'{$this->getProvincia()}','{$this->getLocalidad()}','{$this->getDireccion()}','{$this->getEstado()}'
+                        ,{$this->getCoste()},CURDATE(),NULL);"
+                ;
+                $save=$this->db->query($query);
+
+                $result=false;
+                if($save)
+                {
+                       $result=true;
+                }
+
+                return $result;
+        }
+
+        public function linea_save()
+        {
+                $sql="SELECT LAST_INSERT_ID() AS 'pedido'; ";
+                $query=$this->db->query($sql);
+                $pedidos_id=$query->fetch_object()->pedido;
+
+                foreach($_SESSION['carrito'] as $indice => $elemento)
+                {
+                        $producto=$elemento['producto'];
+
+                        $save=" INSERT INTO lineas_pedidos VALUES(NULL,{$pedidos_id},{$producto->id},{$elemento['unidades']});";
+                        $save_line=$this->db->query($save);
+                }
+
+                
+
+        }
+
+        public function cambiarEstado()
+        {
+                $query="UPDATE pedidos 
+                        SET estado='{$this->getEstado()}'
+                        WHERE id={$this->getId()}
+                ";
+                $estado=$this->db->query($query);
+                
+        }
+
+        public function restStock($unidades,$id)
+        {
+                $query="UPDATE productos SET stock=(stock-$unidades) WHERE id=$id";
+                
+                $update=$this->db->query($query);
+
+                return $update;
         }
     }    
     

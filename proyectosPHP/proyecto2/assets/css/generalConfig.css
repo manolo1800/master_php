@@ -10,6 +10,7 @@ body{
 
 a {
     color: #01B1EA;
+    text-decoration: none;
 }
 
 a:visited{
@@ -68,17 +69,13 @@ button, .button{
 }
 
 .button-small{
+    
     width: 120px;
     text-align: center;
     margin-bottom: 10px;
 }
 
-.button-delete
-{
-    color: red;
-    background-color: red;
-    border: 1px solid rgb(209, 6, 6);
-}
+
 label,input[type="button"],
 input[type="submit"],
 button{
@@ -98,3 +95,8 @@ textarea
     resize: none;
 }
 
+ul,li
+{
+    list-style: none;
+    text-decoration: none;
+}

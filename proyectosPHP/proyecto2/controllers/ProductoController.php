@@ -157,7 +157,8 @@
         {
             
              $producto=new Producto;
-             $productos=$producto->getProduct($_GET['id']);
+             $producto->setId($_GET['id']);
+             $productos=$producto->getProduct();
 
              require_once 'views/producto/mostrar.php';
             

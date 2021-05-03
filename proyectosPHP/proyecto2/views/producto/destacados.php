@@ -1,5 +1,6 @@
 <h1>Algunos de nuestros productos</h1>
 
+  
 <?php if(isset($_SESSION['register']) && $_SESSION['register']=="complete" ): ?>
     <script>window.alert('registro exitoso')</script> 
 
@@ -9,6 +10,7 @@
 <?php endif; ?>
 
 <?php  Utils::deleteSession('register');  ?> 
+
                     
                 <?php while($prod=$productos->fetch_object()): ?>    
                     <div id="product">
@@ -17,8 +19,8 @@
                         <?php endif; ?>
                         <a href="<?=base_url?>Producto/mostrar&id=<?=$prod->id?>"><h2><?=$prod->nombre?></h2></a>
                         <p>$<?=$prod->precio?></p>
-                        <a href="<?=base_url?>Pedidos/comprar" class="button">comprar</a>
-                        <a href="<?=base_url?>Pedidos/agregar al carrito" class="button">agregar al carrito</a>
+                        <a href="<?=base_url?>Carrito/add&id=<?=$prod->id?>" class="button">agregar al carrito</a>
+                        
                     </div>
                 <?php endwhile; ?>
                     

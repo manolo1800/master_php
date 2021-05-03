@@ -32,21 +32,18 @@
         <th>direccion</th>
         <th>coste</th>
         <th>estado</th>
-        <th>acciones</th>
+       
     </tr>
     <?php while($ped=$pedidos->fetch_object()): ?>
         <tr>
-            <td><?=$ped->id;?></td>
+            <td><a href="<?=base_url?>Pedido/detalle&id=<?=$ped->id;?>"><?=$ped->id;?></a></td>
             <td><?=$ped->usuario_id;?></td>            
             <td><?=$ped->provincia;?></td>
             <td><?=$ped->localidad;?></td>
             <td><?=$ped->direccion;?></td>
             <td>$<?=$ped->coste;?></td>
             <td><?=$ped->estado;?></td>
-            <td>
-                <a href="<?=base_url;?>Pedido/editar&id=<?=$ped->id?>" class="button">editar</a>
-                <a href="<?=base_url;?>Pedido/eliminar&id=<?=$ped->id?>" class="button button-delete">eliminar</a>
-            </td>
+            
         </tr>
     <?php endwhile; ?>
 </table>

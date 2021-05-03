@@ -42,6 +42,35 @@
             return $filename;
             
         }
+
+        public static function statisticsCarritos()
+        {
+            $stats = array(
+                'count' => 0,
+                'total' => 0
+            );
+
+            if(isset($_SESSION['carrito']))
+            {
+                $stats['count']=count($_SESSION['carrito']);
+
+                foreach($_SESSION['carrito'] as $valor)
+                {
+                    $stats['total']+= $valor['unidades']*$valor['precio'];
+                }
+            }
+
+            return $stats;
+        }
+
+        public static function isLogin()
+        {
+            if(!isset($_SESSION['login']))
+            {
+                echo "<script>window.alert('inicia sesion o registrate para entrar en esta opcion')</script> ";
+                header("location:".base_url);
+            }
+        }
     }
 
 ?>

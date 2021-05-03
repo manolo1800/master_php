@@ -152,6 +152,7 @@
             {
                 unset($_SESSION['admin']);
             }
+            
             header("location:".base_url);
         }
     }    
