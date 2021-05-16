@@ -11,6 +11,7 @@
 |
 */
 
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,37 @@ Route::get('/', function () {
 });
 
 
+
+Route::get('/peliculas/{pagina?}','PeliculaController@index');
+
+Route::get('/pelicula/detalle/{year?}',[
+    'middleware' => 'testyear',
+    'uses' => 'PeliculaController@detalle',
+    'as'  => 'detalle.pelicula'  
+]);
+
+Route::resource('Usuario', 'UsuarioController');
+
+Route::group(['prefix'=>'frutas'],function(){
+    
+    Route::get('index', 'FrutaController@index');
+
+    Route::get('detalle/{id?}','FrutaController@detalle');
+
+    Route::get('create','FrutaController@create');
+
+    Route::post('insert','FrutaController@insert');
+
+    Route::get('delete/{id?}','FrutaController@delete');
+
+    Route::get('editar/{id?}','FrutaController@editar');
+
+    Route::post('update/{id?}','FrutaController@update');
+} );
+    
+
+
+/*
 Route::get('/mostrar_fecha', function() {
     return view('mostrar_fecha');
 });
@@ -47,3 +79,4 @@ Route::get('/genericPage', function()
 {
     return view('genericPage');
 });
+*/
